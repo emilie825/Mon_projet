@@ -1,0 +1,74 @@
+<div class="card">
+    <div class="card-header text-white bg-info"> 
+       Formulaire d'Enregistrement
+    </div>
+    <div class="card-body">
+       <form novalidate (ngSubmit)="saveData(enregistrementForm)" #enregistrementForm="ngForm" >
+          
+           <div class="form-row">
+               <div class="col-md-6-mb-3">
+                    <label >Nom</label>
+                    <input type="text" class="form-control" placeholder="Nom"  [(ngModel)]="lastName"  name="Nom" required minlength="4" maxlength="10"
+                    #lastNameVar="ngModel"
+                    [ngClass]="{'is-invalid': lastNameVar.touched && !lastNameVar.valid}"
+                    > 
+                    <div class="invalid-feedback">
+                        <span *ngIf="lastNameVar.errors?.['required'] ">
+                          Veuillez entrer votre nom 
+                        </span>
+                        <span *ngIf="lastNameVar.errors?.['minlength'] ">
+                            Le nom doit contenir au moins 4 caratères
+                          </span>
+                          <span *ngIf="lastNameVar.errors?.['maxlength'] ">
+                            Le nom doit contenir au maximium 10 caratères
+                          </span>
+                    </div>     
+               </div>
+ 
+ 
+               <div class="col-md-6-mb-3">
+                    <label >Prenom</label>
+                    <input type="text" class="form-control" placeholder="Prenom"  [(ngModel)]="firstName"   name="Prenom" required maxlength="20" minlength="4"
+                    #firstNameVar="ngModel"
+                    [ngClass]="{'is-invalid': firstNameVar.touched && !firstNameVar.valid}" 
+                    >
+                    <div class="invalid-feedback">
+                        <span *ngIf="firstNameVar.errors?.['required']">
+                        Veuillez entrer votre prenom 
+                        </span>
+                        <span *ngIf="firstNameVar.errors?.['minlength']" >
+                            Le prenom doit contenir au moins 4 caratères
+                        </span>
+                        <span *ngIf="firstNameVar.errors?.['maxlength']" >
+                            Le prenom doit contenir au plus 20 caratères
+                        </span>
+                    </div>   
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="text-center">
+                    <button class="btn btn-info" type="submit">Ajouter un étudiant</button>
+                </div>
+
+            </div> 
+
+            
+
+                 
+       </form>
+    </div>
+
+
+
+<div class="form-row">
+    <div class="text-center" *ngFor="let u of users">
+            {{u.firstName + " "+u.lastName}} 
+            <button (click)="delete(u)"> SUPRIMER </button>
+    </div>
+    
+    
+    
+   
+
+</div> 
